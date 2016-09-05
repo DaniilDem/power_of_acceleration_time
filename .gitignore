@@ -1,0 +1,9 @@
+Makefile
+node_modules
+*.log
+*.user
+*.pri
+*.stash
+*.o
+
+.idea
