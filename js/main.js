@@ -1,8 +1,20 @@
 /**
  * Created by Daniil on 05.09.2016.
  */
-var human = function (name) {
+var Human = function (name) {
     this.name = name;
 };
 
-var vasya = new human('Вася');
+var Monkey = function ()
+{
+    this.bipedalism = false;
+}
+
+var monkey = new Monkey();
+
+Human.prototype = monkey;
+
+var vasya = new Human('Вася');
+
+console.log(vasya);
+console.log(vasya.bipedalism);
