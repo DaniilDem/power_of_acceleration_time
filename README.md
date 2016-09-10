@@ -1,1 +1,1 @@
-# foobar
+# power of acceleration time
