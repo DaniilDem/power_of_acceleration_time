@@ -7,3 +7,5 @@ node_modules
 *.o
 
 .idea
+
+db_auto.csv

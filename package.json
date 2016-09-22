@@ -7,6 +7,7 @@
     "gulp": "^3.9.1"
   },
   "devDependencies": {
+    "brain": "^0.7.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
     "gulp-less": "^3.1.0",
