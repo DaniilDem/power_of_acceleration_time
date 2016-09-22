@@ -1,0 +1,21 @@
+{
+  "name": "power_of_acceleration_time",
+  "description": "power of acceleration time",
+  "main": "./js/main.js",
+  "authors": [
+    "Daniil Demchenko"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/DaniilDem/power_of_acceleration_time",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.0",
+    "brain": "*"
+  }
+}

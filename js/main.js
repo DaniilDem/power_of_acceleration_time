@@ -1,20 +1,37 @@
-/**
- * Created by Daniil on 05.09.2016.
- */
-var Human = function (name) {
-    this.name = name;
-};
+'use strict';
 
-var Monkey = function ()
+function brain(network)
 {
-    this.bipedalism = false;
+    var net = new brain.NeuralNetwork().fromJSON(network);
+    net.fromJSON(network);
 }
 
-var monkey = new Monkey();
+$(document).ready(function()
+{
 
-Human.prototype = monkey;
+    let promise = new Promise((resolve, reject) =>
+    {
 
-var vasya = new Human('Вася');
+        $.getJSON("./nerual_network/network.json", function (json)
+        {
+            resolve(json);
+        });
 
-console.log(vasya);
-console.log(vasya.bipedalism);
+
+    });
+
+    promise
+        .then(
+            response =>
+            {
+                console.log(response);
+                let network = JSON.parse(response);
+                return network;
+            }
+        )
+        .then(brain);
+
+
+
+
+});

@@ -3,11 +3,13 @@
 var xlsx = require('node-xlsx');
 var cheerio = require('cheerio');
 var brain = require('brain');
+var fs = require('fs');
 
 var net = new brain.NeuralNetwork();
 var objAuto = xlsx.parse('testdb.csv.xlsx'); // parses a file
 
 var dataAuto = [];
+var maxValueObj={};
 const lengthData = 10;
 
 for (var i=1; i<=lengthData; i++)
@@ -22,7 +24,7 @@ for (var i=1; i<=lengthData; i++)
         normalize(dataAuto, 'input', 'time');
         normalize(dataAuto, 'output', 'hp');
        console.log(dataAuto);
-        brainTraning(dataAuto);
+        brainTrainingAndSave(dataAuto);
     }
 
 }
@@ -37,12 +39,15 @@ function processingData(engine, timeAndOther)
     let textTime = $('table > tr:nth-last-child(3) > td:nth-child(2)').text();//magic selector
     let floatTime = parseFloat(textTime);
     //-----
-    dataAuto.push(
-        {
-            input:{time:floatTime}, output:{hp:intHP}
-        }
-    );
-    //console.log(intHP+' - '+floatTime);
+    if (floatTime<20 && floatTime>0 &&  intHP<1000)//filter
+    {
+        dataAuto.push(
+            {
+                input:{time:floatTime}, output:{hp:intHP}
+            }
+        );
+
+    }
 }
 
 function normalize(arr, io, fieldName)
@@ -57,6 +62,8 @@ function normalize(arr, io, fieldName)
 
     });
 
+    maxValueObj[fieldName] = max;
+
     arr.map(function (item)
     {
         item[io][fieldName] /= max;
@@ -66,10 +73,16 @@ function normalize(arr, io, fieldName)
 
 }
 
-function brainTraning(data)
+function brainTrainingAndSave(data)
 {
     net.train(data);
 
-    var output = net.run({time:5}); 
-    console.log(output);
+    var output = JSON.stringify(net.toJSON());
+    fs.writeFile("network.json", output, function(err) {
+        if(err) {
+            return console.log(err);
+        }
+
+        console.log("The file was saved!");
+    });
 }
