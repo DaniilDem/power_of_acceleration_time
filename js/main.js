@@ -1,9 +1,11 @@
 'use strict';
 
-function brain(network)
+function runNetwork(network)
 {
     var net = new brain.NeuralNetwork().fromJSON(network);
     net.fromJSON(network);
+
+    console.log(net.run({time:5}));
 }
 
 $(document).ready(function()
@@ -25,11 +27,10 @@ $(document).ready(function()
             response =>
             {
                 console.log(response);
-                let network = JSON.parse(response);
-                return network;
+                return response;
             }
         )
-        .then(brain);
+        .then(runNetwork);
 
 
 
