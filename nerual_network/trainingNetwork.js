@@ -12,40 +12,46 @@ var dataAuto = [];
 var maxValueObj={};
 const lengthData = 10;
 
+var carTxtDescription = {};
+
 for (var i=1; i<=lengthData; i++)
 {
-    let engine = objAuto[0].data[i][7];
-    let timeAndOther = objAuto[0].data[i][10];
+    carTxtDescription.engine = objAuto[0].data[i][7];//magic rows and cols
+    carTxtDescription.timeAndOther = objAuto[0].data[i][10];
+    carTxtDescription.weightAndOther = objAuto[0].data[i][6];
 
-    processingData(dataAuto, engine, timeAndOther);
+    processingData(dataAuto, carTxtDescription);
 
     if (i==lengthData)//after all data processing
     {
         normalize(dataAuto, 'input', 'time');
+        normalize(dataAuto, 'input', 'weight');
         normalize(dataAuto, 'output', 'hp');
         console.log(dataAuto);
         brainTrainingAndSave(dataAuto);
     }
 
 }
- // var i=0; //fro debug
-function processingData(dataAuto, engine, timeAndOther)
+
+function processingData(dataAuto, carTxtDescription)
 {
-    i++;
-    var $ = cheerio.load(engine);
+    var $ = cheerio.load(carTxtDescription.engine);
     let textHP = $('table > tr:nth-last-child(3) > td:nth-child(2)').text();//magic selector
     let intHP = parseInt(textHP);
     //-----
-    $ = cheerio.load(timeAndOther);
+    $ = cheerio.load(carTxtDescription.timeAndOther);
     let textTime = $('table > tr:nth-last-child(3) > td:nth-child(2)').text();//magic selector
     let floatTime = parseFloat(textTime);
     //-----
-    if (floatTime<20 && floatTime>0 &&  intHP<1000)//filter
+    $ = cheerio.load(carTxtDescription.weightAndOther);
+    let textWeight = $('table > tr:nth-last-child(3) > td:nth-child(2)').text();//magic selector
+    let floatWeight = parseFloat(textWeight);
+    //-----
+    if (floatTime<20 && floatTime>0 &&  intHP<1000 && floatWeight>0 && floatWeight<10000)//filter //TODO: edit this bullshit code
     {
         collectData(
             {
-                input:{time:floatTime}, output:{hp:intHP}
-                // input:{time:i}, output:{hp:i*i} //debug string
+                input:{time:floatTime, weight: floatWeight}, output:{hp:intHP}
             }
         );
 

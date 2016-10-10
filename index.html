@@ -9,6 +9,7 @@
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -19,8 +20,37 @@
 </head>
 <body>
 <div class="container">
-    <h1>power of acceleration time</h1>
+    <div class="row">
+        <h1 class="text-center">Time to Power</h1>
+    </div>
+    <div class="row">
+        <div class="center-block" style="width: 480px;">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form action="">
+                        <div class="form-group">
 
+                            <label for="carWeight">Enter of your car weight with driver</label>
+                            <div class="input-group">
+                                <input id="carWeight" type="number" placeholder="example 1100" autofocus min="0" max="10000" class="form-control">
+                                <div class="input-group-addon">Kg</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                        <label for="carTime">Enter of your car acceleration to 100 km / h</label>
+                            <div class="input-group">
+                                <input id="carTime" type="number" step="0.01" placeholder="example 7.9" autofocus min="0" max="30" class="form-control">
+                                <div class="input-group-addon">Seconds</div>
+                            </div>
+                        </div>
+
+                            <div class="alert alert-info alert-large text-center " role="alert">150 Hp</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

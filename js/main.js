@@ -24,9 +24,9 @@ $(document).ready(function ()
             }
         )
         .then(
-            response =>
+            responseNetwork =>
             {
-                return runNetwork(response);
+                return  getResultNetwork({time:7, weight:1000}, responseNetwork);
             }
         )
         .then(
