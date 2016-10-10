@@ -17,20 +17,21 @@ for (var i=1; i<=lengthData; i++)
     let engine = objAuto[0].data[i][7];
     let timeAndOther = objAuto[0].data[i][10];
 
-    processingData(engine, timeAndOther);
+    processingData(dataAuto, engine, timeAndOther);
 
-    if (i==lengthData)
+    if (i==lengthData)//after all data processing
     {
         normalize(dataAuto, 'input', 'time');
         normalize(dataAuto, 'output', 'hp');
-       console.log(dataAuto);
+        console.log(dataAuto);
         brainTrainingAndSave(dataAuto);
     }
 
 }
-
-function processingData(engine, timeAndOther)
+ // var i=0; //fro debug
+function processingData(dataAuto, engine, timeAndOther)
 {
+    i++;
     var $ = cheerio.load(engine);
     let textHP = $('table > tr:nth-last-child(3) > td:nth-child(2)').text();//magic selector
     let intHP = parseInt(textHP);
@@ -41,13 +42,19 @@ function processingData(engine, timeAndOther)
     //-----
     if (floatTime<20 && floatTime>0 &&  intHP<1000)//filter
     {
-        dataAuto.push(
+        collectData(
             {
                 input:{time:floatTime}, output:{hp:intHP}
+                // input:{time:i}, output:{hp:i*i} //debug string
             }
         );
 
     }
+}
+
+function collectData(dat)
+{
+    dataAuto.push( dat );
 }
 
 function normalize(arr, io, fieldName)
@@ -77,12 +84,14 @@ function brainTrainingAndSave(data)
 {
     net.train(data);
 
-    var output = JSON.stringify(net.toJSON());
+    var writingData = net.toJSON();
+        writingData.maxValueObj = maxValueObj;
+
+    var output = JSON.stringify(writingData);
     fs.writeFile("network.json", output, function(err) {
         if(err) {
             return console.log(err);
         }
-
         console.log("The file was saved!");
     });
 }

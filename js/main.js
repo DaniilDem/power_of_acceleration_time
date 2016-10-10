@@ -1,17 +1,10 @@
 'use strict';
 
-function runNetwork(network)
-{
-    var net = new brain.NeuralNetwork().fromJSON(network);
-    net.fromJSON(network);
 
-    console.log(net.run({time:5}));
-}
-
-$(document).ready(function()
+$(document).ready(function ()
 {
 
-    let promise = new Promise((resolve, reject) =>
+    var promise = new Promise((resolve, reject) =>
     {
 
         $.getJSON("./nerual_network/network.json", function (json)
@@ -30,9 +23,19 @@ $(document).ready(function()
                 return response;
             }
         )
-        .then(runNetwork);
-
-
+        .then(
+            response =>
+            {
+                return runNetwork(response);
+            }
+        )
+        .then(
+            resultNetwork =>
+            {
+                console.log(resultNetwork);
+                return resultNetwork;
+            }
+        )
 
 
 });
