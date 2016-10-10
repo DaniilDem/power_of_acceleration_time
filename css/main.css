@@ -7,3 +7,6 @@ body {
 .alert-large {
   font-size: 2.5em;
 }
+.col-centered {
+  float: none;
+}
