@@ -6,7 +6,8 @@ var CarFormView = Backbone.View.extend({
     el: "#carForm",
 
     events: {
-        "keyup #carWeight, #carTime":   "changeInput"
+        "keyup #carWeight, #carTime":   "changeInput",
+        "change #carWeight, #carTime":   "changeInput"
     },
 
     initialize: function() {

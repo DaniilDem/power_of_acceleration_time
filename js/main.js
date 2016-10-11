@@ -26,13 +26,7 @@ $(document).ready(function ()
                 return  getResultNetwork({time:7, weight:1000}, network);
             }
         )
-        .then(
-            resultNetwork =>
-            {
-                console.log(resultNetwork);
-                return resultNetwork;
-            }
-        )
+        
 
 
 });
