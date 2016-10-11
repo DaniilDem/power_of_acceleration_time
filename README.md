@@ -1,4 +1,6 @@
 # Time to Power
+##Watch this
+https://daniildem.github.io/power_of_acceleration_time/
 ##What is happened
 This is a simple demo project. It shows the power of the car on its acceleration and mass.
 ##Nerual network
