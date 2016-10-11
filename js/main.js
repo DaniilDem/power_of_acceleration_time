@@ -1,6 +1,6 @@
 'use strict';
 
-
+var network;
 $(document).ready(function ()
 {
 
@@ -17,16 +17,13 @@ $(document).ready(function ()
 
     promise
         .then(
-            response =>
-            {
-                console.log(response);
-                return response;
-            }
-        )
-        .then(
             responseNetwork =>
             {
-                return  getResultNetwork({time:7, weight:1000}, responseNetwork);
+                network = responseNetwork;
+                var carFormModel = new CarFormModel();
+                var carFormView = new CarFormView({model: carFormModel});
+
+                return  getResultNetwork({time:7, weight:1000}, network);
             }
         )
         .then(

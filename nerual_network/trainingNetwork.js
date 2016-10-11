@@ -6,16 +6,22 @@ var brain = require('brain');
 var fs = require('fs');
 
 var net = new brain.NeuralNetwork();
-var objAuto = xlsx.parse('testdb.csv.xlsx'); // parses a file
+console.log('opening file...');
+// var objAuto = xlsx.parse('testdb.csv.xlsx'); // parses a file
+var objAuto = xlsx.parse('db_auto.xlsx'); // parses a file
 
 var dataAuto = [];
 var maxValueObj={};
-const lengthData = 10;
+const lengthData = 45500;
 
 var carTxtDescription = {};
 
 for (var i=1; i<=lengthData; i++)
 {
+    if (i % 100 == 0)
+    {
+        console.log('Progress: '+(i/lengthData*100).toFixed(2));
+    }
     carTxtDescription.engine = objAuto[0].data[i][7];//magic rows and cols
     carTxtDescription.timeAndOther = objAuto[0].data[i][10];
     carTxtDescription.weightAndOther = objAuto[0].data[i][6];
@@ -27,8 +33,8 @@ for (var i=1; i<=lengthData; i++)
         normalize(dataAuto, 'input', 'time');
         normalize(dataAuto, 'input', 'weight');
         normalize(dataAuto, 'output', 'hp');
-        console.log(dataAuto);
         brainTrainingAndSave(dataAuto);
+        // console.log(dataAuto);
     }
 
 }
@@ -98,6 +104,6 @@ function brainTrainingAndSave(data)
         if(err) {
             return console.log(err);
         }
-        console.log("The file was saved!");
+        console.log("nerual network was saved!");
     });
 }

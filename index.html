@@ -25,9 +25,9 @@
     </div>
     <div class="row">
         <div class="col-xs-10 col-sm-8 col-md-6 col-lg-5 center-block col-centered">
-            <div class="panel panel-default">
+            <div id="carForm" class="panel panel-default">
                 <div class="panel-body">
-                    <form action="">
+                    <form action="" onsubmit="return false;">
                         <div class="form-group">
 
                             <label for="carWeight">Enter of your car weight with driver</label>
@@ -47,17 +47,13 @@
                             </div>
                         </div>
 
-                        <div class="alert alert-info alert-large text-center " role="alert">150 Hp</div>
+                        <div class="alert alert-info alert-large text-center" id="carPower" role="alert">150 Hp</div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/build.js" type="text/javascript"></script>
+    <script src="js/build.js" type="text/javascript"></script>
 </body>
 </html>

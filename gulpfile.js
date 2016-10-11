@@ -24,7 +24,13 @@ gulp.task('html', function() {
 
 gulp.task('js', function() {
 
-    gulp.src(['js/*.js', '!js/build.js'])
+    gulp.src([
+        'bower_components/underscore/underscore.js',
+        'bower_components/jquery/dist/jquery.js',
+        'bower_components/backbone/backbone.js',
+        'bower_components/bootstrap/dist/js/bootstrap.js',
+        'js/**/*.js',
+        '!js/build.js'])
         .pipe(sourcemaps.init())
         .pipe(concat('build.js'))
         .pipe(sourcemaps.write())
@@ -36,8 +42,7 @@ gulp.task('watch', function() {
     livereload.listen();
     gulp.watch('less/*.less', ['less']);
     gulp.watch(["*.html", '*.php'], ['html']);
-    gulp.watch('js/*.js', ['js']);
-
+    gulp.watch(['js/**/*.js', '!js/build.js'], ['js']);
 });
 
 gulp.task('default', ['watch']);
