@@ -30,7 +30,7 @@ gulp.task('js', function() {
         'bower_components/backbone/backbone.js',
         'bower_components/bootstrap/dist/js/bootstrap.js',
         'js/**/*.js',
-        '!js/build.js'])
+        '!js/build.js', '!js/notConcate/*'])
         .pipe(sourcemaps.init())
         .pipe(concat('build.js'))
         .pipe(sourcemaps.write())
