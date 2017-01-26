@@ -1,7 +1,7 @@
 /**
  * Created by Daniil on 06.08.2016.
  */
-var gulp = require('gulp'),
+const gulp = require('gulp'),
     less = require('gulp-less'),
     livereload = require('gulp-livereload'),
     prefix = require('gulp-autoprefixer'),
@@ -25,15 +25,15 @@ gulp.task('html', function() {
 gulp.task('js', function() {
 
     gulp.src([
-        'bower_components/underscore/underscore.js',
-        'bower_components/jquery/dist/jquery.js',
-        'bower_components/backbone/backbone.js',
-        'bower_components/bootstrap/dist/js/bootstrap.js',
+        'bower_components/underscore/underscore-min.js',
+        'bower_components/jquery/dist/jquery.min.js',
+        'bower_components/backbone/backbone-min.js',
+        'bower_components/bootstrap/dist/js/bootstrap.min.js',
         'js/**/*.js',
         '!js/build.js', '!js/notConcate/*'])
         .pipe(sourcemaps.init())
         .pipe(concat('build.js'))
-        .pipe(sourcemaps.write())
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('js'))
         .pipe(livereload());
 });

@@ -9,9 +9,7 @@ $(document).ready(function() {
             resolve(json);
         });
 
-
     });
-
     promise
         .then(
             responseNetwork => {
@@ -32,7 +30,7 @@ $(document).ready(function() {
         });
 
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/js/notConcate/serviceWorker.js').then(function(reg) {
+        navigator.serviceWorker.register('/power_of_acceleration_time/js/notConcate/serviceWorker.js').then(function(reg) {
             // регистрация сработала
             console.log('Registration succeeded. Scope is ' + reg.scope);
         }).catch(function(error) {
@@ -40,5 +38,6 @@ $(document).ready(function() {
             console.log('Registration failed with ' + error);
         });
     };
+
 
 });
