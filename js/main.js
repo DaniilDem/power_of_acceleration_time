@@ -31,7 +31,6 @@ $(document).ready(function() {
             console.log('Generation network error:  ' + error);
         });
 
-
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('/js/notConcate/serviceWorker.js').then(function(reg) {
             // регистрация сработала
