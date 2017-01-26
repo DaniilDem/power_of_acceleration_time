@@ -1,11 +1,12 @@
 Makefile
 node_modules
+bower_components
+nerual_network/*.txt
+nerual_network/*.xlsx
 *.log
 *.user
 *.pri
 *.stash
 *.o
-
 .idea
-
 db_auto.csv
